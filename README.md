@@ -20,10 +20,16 @@ Check it's running....
 npm run status
 ```
 
-... and run the demo migrations,
+... and run the demo migrations manually,
 
 ```sh
-npm run migrate
+docker exec -it scylla cqlsh
+```
+
+note that we have a replication factor of 1, as only 1 node is configured (at min. 3 is recommended but this is fine for demo purposes),
+
+```cql
+CREATE KEYSPACE demo_keyspace WITH replication ={'class': 'SimpleStrategy', 'replication_factor': 1} AND durable_writes = true;
 ```
 
 Then run the dotnet project and visit the Swagger site to demo the contacts endpoint here,
