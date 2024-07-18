@@ -7,8 +7,9 @@ namespace ScyllaDBDemo.Repositories
         private ICluster _cluster;
         public ScyllaConnect() {
             _cluster = Cluster.Builder()
-                            .AddContactPoint("192.168.1.103")
-                            .Build();
+                              .AddContactPoint("127.0.0.1")
+                              .WithPort(9042)
+                              .Build();
         }
         
         public Cassandra.ISession GetSession()
