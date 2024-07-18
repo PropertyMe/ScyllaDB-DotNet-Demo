@@ -4,7 +4,7 @@
     "scripts": {
         "create": "bash setup-container.sh",
         "migrate": "bash migrate.sh",
-        "destroy": "echo nopers",
+        "destroy": "docker rm scylla",
         "status": "docker exec -it scylla nodetool status"
     }
 
