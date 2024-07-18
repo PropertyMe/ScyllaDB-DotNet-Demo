@@ -1,8 +1,11 @@
 # ScyllaDB-DotNet-Demo
 Team Six ScyllaDB Research
 
+## Scyalla DB Documentation
+https://propertyme.atlassian.net/wiki/spaces/TS/pages/3206938666/Setup+ScyllaDb+locally
 
-# Generate DB Query
+
+## Generate DB Query
 
 CREATE KEYSPACE local_dev WITH replication ={'class': 'SimpleStrategy', 'replication_factor': 3} and durable_writes = true;
 
