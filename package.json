@@ -1,0 +1,11 @@
+{
+    "name": "scylladb-dotnet-demo",
+    "version": "0.0.0",
+    "scripts": {
+        "create": "bash setup-container.sh",
+        "migrate": "bash migrate.sh",
+        "destroy": "echo nopers",
+        "status": "docker exec -it scylla nodetool status"
+    }
+
+}
