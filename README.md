@@ -52,3 +52,8 @@ Then run the dotnet project and visit the Swagger site to demo the contacts endp
 <https://localhost:44378/swagger/index.html>
 
 
+## Examples
+
+![log outputs](log_outputs.png)
+
+![swagger sample](swagger_sample.png)
