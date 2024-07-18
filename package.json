@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "create": "bash setup-container.sh",
-        "destroy": "docker rm scylla",
+        "destroy": "docker stop scylla && docker rm scylla",
         "status": "docker exec -it scylla nodetool status"
     }
 
