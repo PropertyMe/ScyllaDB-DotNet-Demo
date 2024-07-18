@@ -27,19 +27,10 @@ docker exec -it scylla cqlsh
 ```
 
 ```sql
-CREATE KEYSPACE demo_keyspace WITH replication ={'class': 'SimpleStrategy', 'replication_factor': 1} AND durable_writes = true;
-```
-
-Then run the dotnet project and visit the Swagger site to demo the contacts endpoint here,
-<https://localhost:44378/swagger/index.html>
-
-## Example CQL
-
-```sql
 -- create a new keyspace
 -- note that we have a replication factor of 1, as only 1 node is configured (at min. 3 is recommended but this is fine for demo purposes),
 -- durable writes 'true' enables node replication (recommended)
-CREATE KEYSPACE local_dev WITH replication ={'class': 'SimpleStrategy', 'replication_factor': 3} and durable_writes = true;
+CREATE KEYSPACE local_dev WITH replication ={'class': 'SimpleStrategy', 'replication_factor': 1} and durable_writes = true;
 
 -- use that keyspace
 Use local_dev;
@@ -56,3 +47,8 @@ CREATE TABLE contact (
 INSERT INTO contact (id, username, email, address)
 VALUES (uuid(), 'dev user', 'dev@propertyme.com', '1 George Street, Sydney, NSW 2000');
 ```
+
+Then run the dotnet project and visit the Swagger site to demo the contacts endpoint here,
+<https://localhost:44378/swagger/index.html>
+
+
