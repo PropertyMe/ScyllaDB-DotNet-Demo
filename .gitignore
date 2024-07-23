@@ -4,5 +4,4 @@ obj
 
 
 # demo data ignored
-scylla-data/node*/**
 scylla-data/*
