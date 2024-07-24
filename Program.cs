@@ -1,4 +1,4 @@
-using Cassandra;
+using ScyllaDBDemo.Models;
 using ScyllaDBDemo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +10,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IContactServices, ContactServices>();
+builder.Services.AddTransient<IMigrationService, MigrationService>();
+
+var settings = builder.Configuration.GetSection("Settings").Get<Settings>();
+
 var app = builder.Build();
+
+if (settings.RunMigrations)
+{
+    var migrationService = app.Services.GetRequiredService<IMigrationService>();
+    migrationService.Execute();
+}
+
+if (settings.SeedData)
+{
+    var migrationService = app.Services.GetRequiredService<IMigrationService>();
+    migrationService.Seed();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

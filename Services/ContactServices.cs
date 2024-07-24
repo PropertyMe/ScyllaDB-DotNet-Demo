@@ -8,7 +8,7 @@ namespace ScyllaDBDemo.Services
         public Task<List<Contact>> GetContactsAsync()
         {
             var scyllaSession = new ScyllaConnect().GetSession();
-            var resultList = scyllaSession.Execute("SELECT Id, Username, Email, Address FROM contact");
+            var resultList = scyllaSession.Execute("SELECT Id, Username, Email, Address FROM local_dev.contact");
             var contactList = new List<Contact>();
             foreach (var item in resultList)
             {
