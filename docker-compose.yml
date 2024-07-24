@@ -8,6 +8,10 @@ volumes:
   scylla-data-node3:
     driver: local
 
+networks:
+  scylla-net:
+    driver: bridge
+
 services:
   scylla-node1:
     image: scylladb/scylla:6.0
