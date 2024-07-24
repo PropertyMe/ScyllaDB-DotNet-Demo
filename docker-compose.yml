@@ -10,7 +10,7 @@ volumes:
 
 services:
   scylla-node1:
-    image: scylladb/scylla
+    image: scylladb/scylla:6.0
     container_name: scylla-node1
     # reactor backend -
     #   this updates the advanced socket config.
@@ -22,14 +22,15 @@ services:
       - "SCYLLA_JMX_REMOTE=r"
     expose:
       - "7199" # JMX service port
-      - "9042" # allow querying scylla (non SSL)
-      - "10000" # REST API server
+    ports:
+      - "9042:9042" # allow querying scylla (non SSL)
+      - "10000:10000" # REST API server
     volumes:
       - scylla-data-node1:/var/lib/scylla
       - ./scylla.yml:/etc/scylla/scylla.yml
 
   scylla-node2:
-    image: scylladb/scylla
+    image: scylladb/scylla:6.0
     container_name: scylla-node2
     command: --smp 1 --seeds=scylla-node1 --reactor-backend=epoll --experimental 0
     environment:
@@ -44,7 +45,7 @@ services:
       - scylla-node1
 
   scylla-node3:
-    image: scylladb/scylla
+    image: scylladb/scylla:6.0
     container_name: scylla-node3
     command: --smp 1 --seeds=scylla-node1 --reactor-backend=epoll --experimental 0
     environment:
