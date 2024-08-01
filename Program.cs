@@ -9,8 +9,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IContactServices, ContactServices>();
-builder.Services.AddTransient<IMigrationService, MigrationService>();
+
+builder.Services.RegisterScoped()
+    .AddTransient<IMigrationService, MigrationService>();
 
 var settings = builder.Configuration.GetSection("Settings").Get<Settings>();
 
