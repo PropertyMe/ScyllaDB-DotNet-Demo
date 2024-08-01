@@ -1,10 +1,19 @@
 ﻿namespace ScyllaDBDemo.Models;
 
-public class Measurement(Sensor sensor, float value)
+public class Measurement
 {
-    public Guid SensorId { get; set;} = sensor.PetId;
+    public Measurement() { }
 
-    public DateTimeOffset Timestamp { get; set; } = new(DateTime.UtcNow);
+    public Measurement(Sensor sensor, float value)
+    {
+        SensorId = sensor.SensorId;
+        Timestamp = new(DateTime.UtcNow);
+        Value = value;
+    }
+    
+    public Guid SensorId { get; set;}
 
-    public float Value { get; set; } = value;
+    public DateTimeOffset Timestamp { get; set; }
+
+    public float Value { get; set; }
 }

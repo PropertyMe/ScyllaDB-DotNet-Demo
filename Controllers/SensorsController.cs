@@ -16,7 +16,10 @@ public class SensorsController(ISensorSimulator sensorSimulator, IMeasurementsRe
         var bufferInterval = new TimeSpan(0, 0, bufferIntervalSeconds ?? 60);
         var measurementWindow = new TimeSpan(0, 0, measurementWindowSeconds ?? 10);
 
-        return sensorSimulator.RunSimulation(bufferInterval, measurementWindow);
+        // start as a background process
+        sensorSimulator.RunSimulation(bufferInterval, measurementWindow);
+
+        return Task.CompletedTask;
     }
     
     [HttpGet("{sensorId:guid}")]

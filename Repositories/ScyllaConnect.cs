@@ -61,7 +61,7 @@ namespace ScyllaDBDemo.Repositories
         public IEnumerable<T> Select<T>(string tableName, string whereClause, object whereParam)
         {
             var mapper = new Mapper(Session);
-            return mapper.Fetch<T>($"select * from {tableName} where {whereClause}");
+            return mapper.Fetch<T>($"select * from {tableName} where {whereClause}", whereParam);
         }
     }
 }
