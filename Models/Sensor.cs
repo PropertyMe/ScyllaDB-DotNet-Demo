@@ -21,10 +21,10 @@ public class Sensor
         };
     }
 
-    public double GenerateRandomData()
+    public float GenerateRandomData()
     {
         var random = new Random();
-        return random.NextDouble() * random.Next(1, 4);
+        return (float)random.NextDouble() * random.Next(1, 4);
     }
 }
 

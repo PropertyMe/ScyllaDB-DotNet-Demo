@@ -10,4 +10,7 @@ public class ContactsController(IContactServices contactServices) : ControllerBa
 {
     [HttpGet]
     public Task<List<Contact>> Get() => contactServices.GetContactsAsync();
+    
+    [HttpGet("{contactId:guid}")]
+    public Contact Get(Guid contactId) => contactServices.GetContact(contactId);
 }

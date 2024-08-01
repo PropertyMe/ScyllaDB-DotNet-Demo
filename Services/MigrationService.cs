@@ -1,4 +1,6 @@
-﻿using ScyllaDBDemo.Repositories;
+﻿using Newtonsoft.Json;
+using ScyllaDBDemo.Models;
+using ScyllaDBDemo.Repositories;
 
 namespace ScyllaDBDemo.Services;
 
@@ -11,6 +13,8 @@ public interface IMigrationService
 
 public class MigrationService : IMigrationService
 {
+    private readonly ScyllaConnect _db = new();
+    
     public void Execute()
     {
         Console.WriteLine("Beginning migrations...");
@@ -24,25 +28,24 @@ public class MigrationService : IMigrationService
         }
     }
 
-    private static void ExecuteMigrations()
+    private void ExecuteMigrations()
     {
-        var db = new ScyllaConnect();
-        ExecuteMigration(db, "create_local_dev_keyspace.cql");
-        ExecuteMigration(db, "alter_local_dev_keyspace.cql");
-        ExecuteMigration(db, "create_contact.cql");
-        ExecuteMigration(db, "create_carepet_keyspace.cql");
-        ExecuteMigration(db, "create_owner_table.cql");
-        ExecuteMigration(db, "create_pet_table.cql");
-        ExecuteMigration(db, "create_measurement_table.cql");
-        ExecuteMigration(db, "create_sensor_table.cql");
-        ExecuteMigration(db, "create_sensoravg_table.cql");
+        ExecuteMigration("create_local_dev_keyspace.cql");
+        ExecuteMigration("alter_local_dev_keyspace.cql");
+        ExecuteMigration("create_contact.cql");
+        ExecuteMigration("create_carepet_keyspace.cql");
+        ExecuteMigration("create_owner_table.cql");
+        ExecuteMigration("create_pet_table.cql");
+        ExecuteMigration("create_measurement_table.cql");
+        ExecuteMigration("create_sensor_table.cql");
+        ExecuteMigration("create_sensoravg_table.cql");
     }
 
-    private static void ExecuteMigration(ScyllaConnect db, string migrationFn)
+    private void ExecuteMigration(string migrationFn)
     {
         try {
             var createKeyspace = ReadFile($"Migrations/{migrationFn}");
-            db.Session.Execute(createKeyspace);
+            _db.Session.Execute(createKeyspace);
             
             Console.WriteLine("-----");
             Console.WriteLine($"Applied migration {migrationFn}");
@@ -56,16 +59,24 @@ public class MigrationService : IMigrationService
     public void Seed()
     {
         Console.WriteLine("Beginning to seed data...");
-        var db = new ScyllaConnect();
         
-        try
-        {
-            var seedData = ReadFile("Migrations/seed_simple_contacts.cql");
-            db.Session.Execute(seedData);
+        try {
+            var json = ReadFile("SeedData/contacts.json");
+            var seedData = JsonConvert.DeserializeObject<List<Contact>>(json);
 
-            Console.WriteLine("Successfully finished seeding data 🌱");
+            // note that this is hardcoded to the below keyspace for now
+            _db.Session.ChangeKeyspace("local_dev");
+            foreach (var contact in seedData) {
+                _db.Insert(
+                    nameof(Contact),
+                    ["id", "address", "email", "username"],
+                    [Guid.NewGuid(), contact.Address, contact.Email, contact.Username]
+                );
+            }
+
+            Console.WriteLine("Successfully finished seeding data");
         } catch (Exception ex) {
-            Console.WriteLine("Failed to seed data ❌");
+            Console.WriteLine("Failed to seed data");
             Console.WriteLine(ex.Message);
         }
     }

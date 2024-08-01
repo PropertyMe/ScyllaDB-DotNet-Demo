@@ -55,7 +55,7 @@ public class SensorSimulator : ISensorSimulator
 
             _db.BatchInsert(
                 nameof(Measurement),
-                ["sensor_id", "ticks", "value"],
+                ["sensor_id", "ts", "value"],
                 buffer.Select(m => new object[] { m.SensorId, m.Timestamp, m.Value}).ToArray()
             );
         }
@@ -91,7 +91,8 @@ public class SensorSimulator : ISensorSimulator
             _db.Insert(
                 nameof(Sensor),
                 ["sensor_id", "pet_id", "type"],
-                [sensor.SensorId, sensor.PetId, sensor.Type]
+                // ignoring the null case for this example
+                [sensor.SensorId, sensor.PetId, Enum.GetName(sensor.Type)!]
             );
 
             Console.WriteLine($"New sensor #{sensor.SensorId}");

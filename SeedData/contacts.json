@@ -1,0 +1,242 @@
+﻿[
+  {
+    "username": "dev user",
+    "email": "dev@propertyme.com",
+    "address": "1 George Street, Sydney, NSW 2000"
+  },
+  {
+    "username": "john curtain",
+    "email": "johncurtain@propertyme.com",
+    "address": "1214 McDonald Avenue, Altamonte Springs, FL 32701"
+  },
+  {
+    "username": "richard hammond",
+    "email": "richardhammond@propertyme.com",
+    "address": "4270 Midway Road, Springdale, AR 72764"
+  },
+  {
+    "username": "peter f. hamilton",
+    "email": "peterfhamilton@propertyme.com",
+    "address": "3133 Conifer Drive, Washington, WA 98133"
+  },
+  {
+    "username": "tracy harding",
+    "email": "tracyharding@propertyme.com",
+    "address": "2077 Duke Lane, Weehawken, NJ 07087"
+  },
+  {
+    "username": "lucy hawking",
+    "email": "lucyhawking@propertyme.com",
+    "address": "185 Lauren Drive, Dodgeville, WI 52650"
+  },
+  {
+    "username": "derek landy",
+    "email": "dereklandy@propertyme.com",
+    "address": "1554 Southern Avenue, Mason City, IA 50401"
+  },
+  {
+    "username": "chris d'lacy",
+    "email": "chrisdlacey@propertyme.com",
+    "address": "1819 Elliot Avenue, Seattle, WA 98106"
+  },
+  {
+    "username": "andy kirk",
+    "email": "andy kirk@propertyme.com",
+    "address": "1520 Rosebud Avenue, Tyronza, AR 72386"
+  },
+  {
+    "username": "nate silver",
+    "email": "natesilver@propertyme.com",
+    "address": "4691 Keyser Ridge Road, Greensboro, NC 27401"
+  },
+  {
+    "username": "emma watson",
+    "email": "emmawatson@propertyme.com",
+    "address": "12 Baker Street, London, UK 12345"
+  },
+  {
+    "username": "daniel radcliffe",
+    "email": "danielradcliffe@propertyme.com",
+    "address": "34 Privet Drive, Little Whinging, Surrey 56789"
+  },
+  {
+    "username": "rupert grint",
+    "email": "rupertgrint@propertyme.com",
+    "address": "56 Diagon Alley, London, UK 10101"
+  },
+  {
+    "username": "tom felton",
+    "email": "tomfelton@propertyme.com",
+    "address": "78 Godric's Hollow, Bristol, UK 20202"
+  },
+  {
+    "username": "bonnie wright",
+    "email": "bonniewright@propertyme.com",
+    "address": "90 Grimmauld Place, London, UK 30303"
+  },
+  {
+    "username": "matthew lewis",
+    "email": "matthewlewis@propertyme.com",
+    "address": "102 Hogsmeade Village, York, UK 40404"
+  },
+  {
+    "username": "evanna lynch",
+    "email": "evannalynch@propertyme.com",
+    "address": "114 Hogwarts Castle, Edinburgh, UK 50505"
+  },
+  {
+    "username": "alfie enoch",
+    "email": "alfieenoch@propertyme.com",
+    "address": "126 Shell Cottage, Cornwall, UK 60606"
+  },
+  {
+    "username": "devon murray",
+    "email": "devonmurray@propertyme.com",
+    "address": "138 The Burrow, Ottery St Catchpole, UK 70707"
+  },
+  {
+    "username": "chris rankin",
+    "email": "chrisrankin@propertyme.com",
+    "address": "150 Malfoy Manor, Wiltshire, UK 80808"
+  },
+  {
+    "username": "jamie waylett",
+    "email": "jamiewaylett@propertyme.com",
+    "address": "162 Spinner's End, Birmingham, UK 90909"
+  },
+  {
+    "username": "josh herdman",
+    "email": "joshherdman@propertyme.com",
+    "address": "174 Durmstrang Institute, Sofia, BG 10010"
+  },
+  {
+    "username": "scarlett byrne",
+    "email": "scarlettbyrne@propertyme.com",
+    "address": "186 Beauxbatons Academy, Paris, FR 20020"
+  },
+  {
+    "username": "freddie stroma",
+    "email": "freddiestroma@propertyme.com",
+    "address": "198 Leaky Cauldron, London, UK 30030"
+  },
+  {
+    "username": "george harris",
+    "email": "georgeharris@propertyme.com",
+    "address": "210 Weasley Wizard Wheezes, London, UK 40040"
+  },
+  {
+    "username": "robbie jarvis",
+    "email": "robbiejarvis@propertyme.com",
+    "address": "222 Shrieking Shack, Hogsmeade, UK 50050"
+  },
+  {
+    "username": "will dunn",
+    "email": "willdunn@propertyme.com",
+    "address": "234 Knight Bus, London, UK 60060"
+  },
+  {
+    "username": "ryan turner",
+    "email": "ryanturner@propertyme.com",
+    "address": "246 St Mungo's, London, UK 70070"
+  },
+  {
+    "username": "helen mccrory",
+    "email": "helenmccrory@propertyme.com",
+    "address": "258 Ministry of Magic, London, UK 80080"
+  },
+  {
+    "username": "clémence poésy",
+    "email": "clemencepoesy@propertyme.com",
+    "address": "270 Grimmauld Place, London, UK 90090"
+  },
+  {
+    "username": "stanislav ianevski",
+    "email": "stanislavia@propertyme.com",
+    "address": "282 Durmstrang Institute, Sofia, BG 10101"
+  },
+  {
+    "username": "miranda richardson",
+    "email": "mirandarichardson@propertyme.com",
+    "address": "294 Beauxbatons Academy, Paris, FR 20202"
+  },
+  {
+    "username": "fiona shaw",
+    "email": "fionashaw@propertyme.com",
+    "address": "306 Privet Drive, Little Whinging, Surrey 30303"
+  },
+  {
+    "username": "richard griffiths",
+    "email": "richardgriffiths@propertyme.com",
+    "address": "318 Godric's Hollow, Bristol, UK 40404"
+  },
+  {
+    "username": "geraldine somerville",
+    "email": "geraldinesomerville@propertyme.com",
+    "address": "330 The Burrow, Ottery St Catchpole, UK 50505"
+  },
+  {
+    "username": "david thewlis",
+    "email": "davidthewlis@propertyme.com",
+    "address": "342 Shell Cottage, Cornwall, UK 60606"
+  },
+  {
+    "username": "jason isaacs",
+    "email": "jasonisaacs@propertyme.com",
+    "address": "354 Malfoy Manor, Wiltshire, UK 70707"
+  },
+  {
+    "username": "timothy spall",
+    "email": "timothyspall@propertyme.com",
+    "address": "366 Spinner's End, Birmingham, UK 80808"
+  },
+  {
+    "username": "julie walters",
+    "email": "juliewalters@propertyme.com",
+    "address": "378 Leaky Cauldron, London, UK 90909"
+  },
+  {
+    "username": "maggie smith",
+    "email": "maggiesmith@propertyme.com",
+    "address": "390 Knight Bus, London, UK 10010"
+  },
+  {
+    "username": "michael gambon",
+    "email": "michaelgambon@propertyme.com",
+    "address": "402 Ministry of Magic, London, UK 20020"
+  },
+  {
+    "username": "alan rickman",
+    "email": "alanrickman@propertyme.com",
+    "address": "414 Shrieking Shack, Hogsmeade, UK 30030"
+  },
+  {
+    "username": "robbie coltrane",
+    "email": "robbiecoltrane@propertyme.com",
+    "address": "426 Hogwarts Castle, Edinburgh, UK 40040"
+  },
+  {
+    "username": "brendan gleeson",
+    "email": "brendangleeson@propertyme.com",
+    "address": "438 Beauxbatons Academy, Paris, FR 50050"
+  },
+  {
+    "username": "gary oldman",
+    "email": "garyoldman@propertyme.com",
+    "address": "450 Grimmauld Place, London, UK 60060"
+  },
+  {
+    "username": "emma thompson",
+    "email": "emmathompson@propertyme.com",
+    "address": "462 Shrieking Shack, Hogsmeade, UK 70070"
+  },
+  {
+    "username": "ralph fiennes",
+    "email": "ralphfiennes@propertyme.com",
+    "address": "474 Durmstrang Institute, Sofia, BG 80080"
+  },
+  {
+    "username": "helena bonham carter",
+    "email": "helenabonhamcarter@propertyme.com",
+    "address": "486 Shell Cottage, Cornwall, UK 90090"
+  }
+]

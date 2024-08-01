@@ -10,13 +10,13 @@ namespace ScyllaDBDemo.Controllers;
 public class SensorsController(ISensorSimulator sensorSimulator, IMeasurementsRepository measurementsRepository) : ControllerBase
 {
     [HttpGet("simulate")]
-    public Task Get(TimeSpan? bufferInterval, TimeSpan? measurementWindow)
+    public Task Get(int? bufferIntervalSeconds, int? measurementWindowSeconds)
     {
         // default is 6 measurements/minute
-        return sensorSimulator.RunSimulation(
-            bufferInterval ?? new TimeSpan(0, 0, 0, 60),
-            measurementWindow ?? new TimeSpan(0, 0, 0, 10)
-        );
+        var bufferInterval = new TimeSpan(0, 0, bufferIntervalSeconds ?? 60);
+        var measurementWindow = new TimeSpan(0, 0, measurementWindowSeconds ?? 10);
+
+        return sensorSimulator.RunSimulation(bufferInterval, measurementWindow);
     }
     
     [HttpGet("{sensorId:guid}")]
