@@ -14,15 +14,15 @@ public class MigrationService : IMigrationService
     public void Execute()
     {
         Console.WriteLine("Beginning migrations...");
-        var scyllaSession = new ScyllaConnect().GetSession();
+        var db = new ScyllaConnect();
 
         try
         {
             var createKeyspace = ReadFile("Migrations/create_keyspace.cql");
-            scyllaSession.Execute(createKeyspace);
+            db.Session.Execute(createKeyspace);
 
             var createContact = ReadFile("Migrations/create_contact.cql");
-            scyllaSession.Execute(createContact);
+            db.Session.Execute(createContact);
 
             Console.WriteLine("Successfully ran migrations ✅");
         } catch (Exception ex) {
@@ -36,12 +36,12 @@ public class MigrationService : IMigrationService
     public void Seed()
     {
         Console.WriteLine("Beginning to seed data...");
-        var scyllaSession = new ScyllaConnect().GetSession();
+        var db = new ScyllaConnect();
         
         try
         {
             var seedData = ReadFile("Migrations/seed_simple_contacts.cql");
-            scyllaSession.Execute(seedData);
+            db.Session.Execute(seedData);
 
             Console.WriteLine("Successfully finished seeding data 🌱");
         } catch (Exception ex) {

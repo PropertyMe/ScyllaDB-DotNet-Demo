@@ -3,7 +3,7 @@ using ScyllaDBDemo.Services;
 
 namespace ScyllaDBDemo.Controllers
 {
-    public class SensorSimulator(ISensorSimulator sensorSimulator) : ControllerBase
+    public class SensorSimulatorController(ISensorSimulator sensorSimulator) : ControllerBase
     {
         [HttpGet("sensorsimulator")]
         public Task Get(TimeSpan? bufferInterval, TimeSpan? measurementWindow)
