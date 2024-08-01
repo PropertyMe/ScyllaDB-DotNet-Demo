@@ -1,0 +1,1 @@
+﻿alter keyspace local_dev with replication = { 'class': 'NetworkTopologyStrategy', 'replication_factor': '3'};

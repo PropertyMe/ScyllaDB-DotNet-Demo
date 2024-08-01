@@ -14,22 +14,42 @@ public class MigrationService : IMigrationService
     public void Execute()
     {
         Console.WriteLine("Beginning migrations...");
-        var db = new ScyllaConnect();
 
-        try
-        {
-            var createKeyspace = ReadFile("Migrations/create_keyspace.cql");
-            db.Session.Execute(createKeyspace);
-
-            var createContact = ReadFile("Migrations/create_contact.cql");
-            db.Session.Execute(createContact);
-
-            Console.WriteLine("Successfully ran migrations ✅");
+        try {
+            ExecuteMigrations();
+            Console.WriteLine("Successfully ran migrations");
         } catch (Exception ex) {
-            Console.WriteLine("Failed to execute migrations ❌");
-            // note that this spits out a very simple error with a line number form the CQL
-            // it would be nice to enrich this with whichever migration failed
+            Console.WriteLine("Failed to execute migrations");
             Console.WriteLine(ex.Message);
+        }
+    }
+
+    private static void ExecuteMigrations()
+    {
+        var db = new ScyllaConnect();
+        ExecuteMigration(db, "create_local_dev_keyspace.cql");
+        ExecuteMigration(db, "alter_local_dev_keyspace.cql");
+        ExecuteMigration(db, "create_contact.cql");
+        ExecuteMigration(db, "create_carepet_keyspace.cql");
+        ExecuteMigration(db, "create_owner_table.cql");
+        ExecuteMigration(db, "create_pet_table.cql");
+        ExecuteMigration(db, "create_measurement_table.cql");
+        ExecuteMigration(db, "create_sensor_table.cql");
+        ExecuteMigration(db, "create_sensoravg_table.cql");
+    }
+
+    private static void ExecuteMigration(ScyllaConnect db, string migrationFn)
+    {
+        try {
+            var createKeyspace = ReadFile($"Migrations/{migrationFn}");
+            db.Session.Execute(createKeyspace);
+            
+            Console.WriteLine("-----");
+            Console.WriteLine($"Applied migration {migrationFn}");
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException($"Migration {migrationFn} failed with error, {ex.Message}");
         }
     }
 

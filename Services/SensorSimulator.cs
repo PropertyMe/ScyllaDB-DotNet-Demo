@@ -43,7 +43,7 @@ public class SensorSimulator : ISensorSimulator
                     .Select(s =>
                     {
                         var m = new Measurement(s, s.GenerateRandomData());
-                        Console.WriteLine($"{s.Type} sensor #{s.SensorId} measured new value: {m.Value} | Time: {new DateTime(m.Ticks)}");
+                        Console.WriteLine($"{s.Type} sensor #{s.SensorId} measured new value: {m.Value} | UTC Time: {m.Timestamp.DateTime.ToUniversalTime()}");
                         return m;
                     })
                     .ToArray()
@@ -56,7 +56,7 @@ public class SensorSimulator : ISensorSimulator
             _db.BatchInsert(
                 nameof(Measurement),
                 ["sensor_id", "ticks", "value"],
-                buffer.Select(m => new object[] { m.SensorId, m.Ticks, m.Value}).ToArray()
+                buffer.Select(m => new object[] { m.SensorId, m.Timestamp, m.Value}).ToArray()
             );
         }
 
