@@ -1,3 +1,4 @@
+using Cassandra.Mapping;
 using ScyllaDBDemo.Models;
 using ScyllaDBDemo.Services;
 
@@ -42,4 +43,8 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// configure model mappings for Datastax
+MappingConfiguration.Global.Define<ModelConfiguration>();
+
 app.Run();
+

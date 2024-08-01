@@ -17,5 +17,5 @@ public class OwnersRepository : IOwnersRepository
         _db.Session.ChangeKeyspace(SensorKeyspace);
     }
 
-    public IEnumerable<Owner> GetAll() => _db.Select<Owner>(nameof(Owner));
+    public IEnumerable<Owner> GetAll() => _db.Select<Owner>();
 }

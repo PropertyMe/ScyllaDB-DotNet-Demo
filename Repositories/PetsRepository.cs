@@ -20,7 +20,6 @@ public class PetRepository : IPetRepository
     public IEnumerable<Pet> GetForOwner(Guid ownerId)
     {
         return _db.Select<Pet>(
-            nameof(Pet),
             "sensor_id = :sensor_id",
             ownerId
         );

@@ -22,6 +22,14 @@ public class SensorsController(ISensorSimulator sensorSimulator, IMeasurementsRe
         return Task.CompletedTask;
     }
     
-    [HttpGet("{sensorId:guid}")]
+    [HttpGet("{sensorId:guid}/values")]
     public List<Measurement> Get(Guid sensorId) => measurementsRepository.GetForSensor(sensorId).ToList();
+
+    [HttpGet("{sensorId:guid}/values/day/{date:datetime}")]
+    public List<SensorAverage> Get(Guid sensorId, DateTime date)
+    {
+        if (date.Date > DateTime.UtcNow.Date) throw new BadHttpRequestException("We can't read the future");
+        
+        return measurementsRepository.GetOrCreateAveragesForSensor(sensorId, date).ToList();
+    }
 }

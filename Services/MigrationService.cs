@@ -67,8 +67,7 @@ public class MigrationService : IMigrationService
             // note that this is hardcoded to the below keyspace for now
             _db.Session.ChangeKeyspace("local_dev");
             foreach (var contact in seedData) {
-                _db.Insert(
-                    nameof(Contact),
+                _db.Insert<Contact>(
                     ["id", "address", "email", "username"],
                     [Guid.NewGuid(), contact.Address, contact.Email, contact.Username]
                 );

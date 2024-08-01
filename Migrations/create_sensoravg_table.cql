@@ -1,4 +1,4 @@
-﻿create table if not exists carepet.sensor_avg
+﻿create table if not exists carepet.sensor_average
 (
     sensor_id uuid,
     date  DATE,

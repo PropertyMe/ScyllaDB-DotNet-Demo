@@ -53,8 +53,7 @@ public class SensorSimulator : ISensorSimulator
             lastMeasurement = DateTime.UtcNow;
             Console.WriteLine("Pushing buffer to database");
 
-            _db.BatchInsert(
-                nameof(Measurement),
+            _db.BatchInsert<Measurement>(
                 ["sensor_id", "ts", "value"],
                 buffer.Select(m => new object[] { m.SensorId, m.Timestamp, m.Value}).ToArray()
             );
@@ -70,16 +69,14 @@ public class SensorSimulator : ISensorSimulator
 
         var (owner, pet, sensors) = CreateRandomData();
 
-        _db.Insert(
-            nameof(Owner),
+        _db.Insert<Owner>(
             ["owner_id", "address", "name"],
             [owner.OwnerId, owner.Address, owner.Name]
         );
         
         Console.WriteLine($"New owner #{owner.OwnerId}");
         
-        _db.Insert(
-            nameof(Pet),
+        _db.Insert<Pet>(
             ["pet_id", "owner_id", "age", "weight", "name"],
             [pet.PetId, pet.OwnerId, pet.Age, pet.Weight, pet.Name]
         );
@@ -88,8 +85,7 @@ public class SensorSimulator : ISensorSimulator
 
         foreach (var sensor in sensors)
         {
-            _db.Insert(
-                nameof(Sensor),
+            _db.Insert<Sensor>(
                 ["sensor_id", "pet_id", "type"],
                 // ignoring the null case for this example
                 [sensor.SensorId, sensor.PetId, Enum.GetName(sensor.Type)!]
