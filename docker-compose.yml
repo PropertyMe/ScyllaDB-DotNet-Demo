@@ -11,6 +11,7 @@ volumes:
 networks:
   scylla-net:
     driver: bridge
+    external: true
 
 services:
   scylla-node1:
@@ -20,19 +21,23 @@ services:
     #   this updates the advanced socket config.
     #   Read more: https://java-driver.docs.scylladb.com/stable/manual/core/configuration/reference/README.html
     #   the above readme links to their Java driver, but this was the only reference I could find that referenced roughly what I was looking for
-    command: --smp 1 --reactor-backend=epoll --experimental 0
+    command: --smp 1 --reactor-backend=epoll --experimental 0 --api-address 0.0.0.0
     environment:
       - "SCYLLA_JMX_ADDR=ja 0.0.0.0"
       - "SCYLLA_JMX_REMOTE=r"
+      - "CLUSTER_NAME=scylla-docker-dotnet-demo"
     expose:
-      - "7199" # JMX service port
+      - "7199" # JMX service port (required for nodetool to function)
+      - "9180" # prometheus API
     ports:
       - "9042:9042" # allow querying scylla (non SSL)
       - "10000:10000" # REST API server
+      - "9180:9180" # prometheus API
     volumes:
       - scylla-data-node1:/var/lib/scylla
-      - ./scylla.yml:/etc/scylla/scylla.yml
-
+      # - ./scylla.yml:/etc/scylla/scylla.yml
+    networks:
+      - scylla-net
   scylla-node2:
     image: scylladb/scylla:6.0
     container_name: scylla-node2
@@ -40,13 +45,17 @@ services:
     environment:
       - "SCYLLA_JMX_ADDR=ja 0.0.0.0"
       - "SCYLLA_JMX_REMOTE=r"
+      - "CLUSTER_NAME=scylla-docker-dotnet-demo"
     expose:
       - "7199"
+      - "9180" # prometheus API
     volumes:
       - scylla-data-node2:/var/lib/scylla
-      - ./scylla.yml:/etc/scylla/scylla.yml
+      # - ./scylla.yml:/etc/scylla/scylla.yml
     depends_on:
       - scylla-node1
+    networks:
+      - scylla-net
 
   scylla-node3:
     image: scylladb/scylla:6.0
@@ -55,10 +64,14 @@ services:
     environment:
       - "SCYLLA_JMX_ADDR=ja 0.0.0.0"
       - "SCYLLA_JMX_REMOTE=r"
+      - "CLUSTER_NAME=scylla-docker-dotnet-demo"
     expose:
       - "7199"
+      - "9180"
     volumes:
       - scylla-data-node3:/var/lib/scylla
-      - ./scylla.yml:/etc/scylla/scylla.yml
+      # - ./scylla.yml:/etc/scylla/scylla.yml
     depends_on:
       - scylla-node1
+    networks:
+      - scylla-net
