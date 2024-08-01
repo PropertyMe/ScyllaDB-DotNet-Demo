@@ -2,9 +2,9 @@
     "name": "scylladb-dotnet-demo",
     "version": "0.0.0",
     "scripts": {
-        "create": "bash setup-container.sh",
-        "destroy": "docker stop scylla && docker rm scylla",
-        "status": "docker exec -it scylla nodetool status"
+        "create": "docker compose up",
+        "destroy": "docker compose down",
+        "status": "docker exec -it scylla-node1 nodetool status"
     }
 
 }
