@@ -1,4 +1,4 @@
-using Cassandra.Mapping;
+using ScyllaDBDemo.Database;
 using ScyllaDBDemo.Models;
 using ScyllaDBDemo.Services;
 
@@ -11,8 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.RegisterScoped()
-    .AddTransient<IMigrationService, MigrationService>();
+builder.Services.RegisterDatabase().RegisterScoped();
 
 var settings = builder.Configuration.GetSection("Settings").Get<Settings>();
 
@@ -42,9 +41,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-// configure model mappings for Datastax
-MappingConfiguration.Global.Define<ModelConfiguration>();
 
 app.Run();
 

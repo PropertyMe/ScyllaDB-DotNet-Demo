@@ -1,4 +1,5 @@
-﻿using ScyllaDBDemo.Models;
+﻿using ScyllaDBDemo.Database;
+using ScyllaDBDemo.Models;
 
 namespace ScyllaDBDemo.Repositories;
 
@@ -10,10 +11,11 @@ public interface IOwnersRepository
 public class OwnersRepository : IOwnersRepository
 {
     private const string SensorKeyspace = "carepet";
-    private readonly ScyllaConnect _db = new();
+    private readonly IScyllaDb _db;
 
-    public OwnersRepository()
+    public OwnersRepository(IScyllaDb scyllaDb)
     {
+        _db = scyllaDb;
         _db.Session.ChangeKeyspace(SensorKeyspace);
     }
 

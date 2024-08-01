@@ -1,4 +1,5 @@
 ﻿using Cassandra;
+using ScyllaDBDemo.Database;
 using ScyllaDBDemo.Models;
 
 namespace ScyllaDBDemo.Repositories;
@@ -22,10 +23,11 @@ public interface IMeasurementsRepository
 public class MeasurementsRepository : IMeasurementsRepository
 {
     private const string SensorKeyspace = "carepet";
-    private readonly ScyllaConnect _db = new();
+    private readonly IScyllaDb _db;
 
-    public MeasurementsRepository()
+    public MeasurementsRepository(IScyllaDb scyllaDb)
     {
+        _db = scyllaDb;
         _db.Session.ChangeKeyspace(SensorKeyspace);
     }
 

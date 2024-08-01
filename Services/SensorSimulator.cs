@@ -1,4 +1,5 @@
-﻿using ScyllaDBDemo.Models;
+﻿using ScyllaDBDemo.Database;
+using ScyllaDBDemo.Models;
 using ScyllaDBDemo.Repositories;
 
 namespace ScyllaDBDemo.Services;

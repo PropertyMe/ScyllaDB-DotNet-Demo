@@ -1,16 +1,14 @@
 ﻿using Cassandra.Mapping;
+using ScyllaDBDemo.Database;
 using ScyllaDBDemo.Models;
-using ScyllaDBDemo.Repositories;
 
 namespace ScyllaDBDemo.Services
 {
-    public class ContactServices : IContactServices
+    public class ContactServices(IScyllaDb scyllaDb) : IContactServices
     {
-        private readonly ScyllaConnect _db = new();
-        
         public Task<List<Contact>> GetContactsAsync()
         {
-            var resultList = _db.Session.Execute("SELECT Id, Username, Email, Address FROM local_dev.contact");
+            var resultList = scyllaDb.Session.Execute("SELECT Id, Username, Email, Address FROM local_dev.contact");
             var contactList = new List<Contact>();
             foreach (var item in resultList)
             {
@@ -27,7 +25,7 @@ namespace ScyllaDBDemo.Services
 
         public Contact GetContact(Guid contactId)
         {
-            var mapper = new Mapper(_db.Session);
+            var mapper = new Mapper(scyllaDb.Session);
             return mapper.Single<Contact>($"select * from local_dev.contact where id = :contactId", contactId);
         }
     }

@@ -2,9 +2,33 @@
 using Cassandra.Mapping;
 using ISession = Cassandra.ISession;
 
-namespace ScyllaDBDemo.Repositories
+namespace ScyllaDBDemo.Database
 {
-    public class ScyllaConnect
+    public interface IScyllaDb
+    {
+        public ISession Session { get; }
+
+        /// <summary>
+        /// Provides a simpler interface for prepared insert statements
+        /// <seealso cref="PreparedStatement"/>
+        /// </summary>
+        public void Insert<T>(string[] columns, object[] values);
+
+        /// <summary>
+        /// Similar to the above insert, provides a simpler interface for prepared and batched insert statements
+        /// <seealso cref="PreparedStatement"/>
+        /// <seealso cref="BatchStatement"/>
+        /// </summary>
+        public void BatchInsert<T>(string[] columns, object[][] values);
+
+        public IEnumerable<T> Select<T>();
+
+        public IEnumerable<T> Select<T>(string whereClause, object whereParam);
+
+        public IEnumerable<T> Select<T>(string whereClause, object[] whereParams);
+    }
+    
+    public class ScyllaConnect : IScyllaDb
     {
         private readonly Cluster _cluster = Cluster.Builder()
             .AddContactPoint("127.0.0.1")
@@ -17,10 +41,6 @@ namespace ScyllaDBDemo.Repositories
 
         public ScyllaConnect() { }
         
-        /// <summary>
-        /// Provides a simpler interface for prepared insert statements
-        /// <seealso cref="PreparedStatement"/>
-        /// </summary>
         public void Insert<T>(string[] columns, object[] values)
         {
             var fields = string.Join(", ", columns); 
@@ -32,11 +52,6 @@ namespace ScyllaDBDemo.Repositories
             Session.Execute(boundStatement);
         }
 
-        /// <summary>
-        /// Similar to the above insert, provides a simpler interface for prepared and batched insert statements
-        /// <seealso cref="PreparedStatement"/>
-        /// <seealso cref="BatchStatement"/>
-        /// </summary>
         public void BatchInsert<T>(string[] columns, object[][] values)
         {
             var fields = string.Join(", ", columns);

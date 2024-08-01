@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ScyllaDBDemo.Database;
 using ScyllaDBDemo.Models;
 using ScyllaDBDemo.Repositories;
 
