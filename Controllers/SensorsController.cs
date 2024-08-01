@@ -7,7 +7,7 @@ namespace ScyllaDBDemo.Controllers;
 
 [ApiController]
 [Route("api/sensors")]
-public class SensorController(ISensorSimulator sensorSimulator, IMeasurementsRepository measurementsRepository) : ControllerBase
+public class SensorsController(ISensorSimulator sensorSimulator, IMeasurementsRepository measurementsRepository) : ControllerBase
 {
     [HttpGet("simulate")]
     public Task Get(TimeSpan? bufferInterval, TimeSpan? measurementWindow)
